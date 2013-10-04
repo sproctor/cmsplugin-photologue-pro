@@ -7,10 +7,14 @@
 <h2>{{ gallery.title }}</h2>
 <div class="photologue_pro_album_index">
 	{% for photo in photos.object_list %}
-	<div class="photologue_pro_photo">
-		<a href="{% url 'photologue_photo' gallery.id photo.id %}">{% polaroid_thumbnail photo %}</a>
-		<h4 class="photologue_pro_photo_title center">{{ photo.title }}</h4>
-	</div>
+        {% if forloop.counter0 < photos_to_show %}
+            <div class="photologue_pro_photo">
+                <a href="{% url 'photologue_photo' gallery.id photo.id %}">{% polaroid_thumbnail photo %}</a>
+                <h4 class="photologue_pro_photo_title center">{{ photo.title }}</h4>
+            </div>
+        {% else %}
+            {# add images to the page, but add a style="display:none" to them #}
+        {% endif %}
 	{% empty %}
 	<div class="photologue_pro_error">{% trans "Sorry, there are no photos to show!" %}</div>
 	{% endfor %}

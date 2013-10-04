@@ -8,7 +8,6 @@ from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cmsplugin_photologue_pro import models as pluginmodels
 from photologue import models
-import re
 
 
 class AlbumPlugin(CMSPluginBase):
@@ -24,7 +23,9 @@ class AlbumPlugin(CMSPluginBase):
             return context
         photo_instance = instance.album.photos.filter(is_public=True)
         photo_instance = photo_instance.order_by('id')
-        per_page = instance.per_page or 100
+        photos_number = instance.album.photos.count()
+        per_page = instance.per_page or 10000
+        photos_to_show = instance.photos_to_show
         paginator = Paginator(photo_instance, per_page)
         try:
             page = max(int(context.get('request', 1).GET.get('page', 1)))
@@ -39,6 +40,8 @@ class AlbumPlugin(CMSPluginBase):
             'photos': photos,
             'pages': paginator.page_range,
             'current_page': page,
+            'photos_to_show': photos_to_show,
+            'photos_number': photos_number,
         })
         return context
 
