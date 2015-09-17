@@ -15,7 +15,10 @@ class AlbumPlugin(CMSPluginBase):
 
     name = _('Album')
     model = pluginmodels.Album
-    render_template = 'cmsplugin_photologue_pro/album_plugin.html'
+    _render_template = 'cmsplugin_photologue_pro/album_plugin.html'
+
+    def get_render_template(self, context, instance, placeholder):
+        return self._render_template if not instance.template else instance.template
 
     def render(self, context, instance, placeholder):
         if not instance.album.is_public:
