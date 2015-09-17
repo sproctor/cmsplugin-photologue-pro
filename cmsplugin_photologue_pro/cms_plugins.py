@@ -25,7 +25,7 @@ class AlbumPlugin(CMSPluginBase):
             context.update({'is_not_public': True})
             return context
         photo_instance = instance.album.photos.filter(is_public=True)
-        photo_instance = photo_instance.order_by('id')
+        photo_instance = photo_instance
         photos_number = instance.album.photos.count()
         per_page = instance.per_page or 10000
         photos_to_show = instance.photos_to_show

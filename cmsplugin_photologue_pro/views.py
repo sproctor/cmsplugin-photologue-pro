@@ -29,7 +29,7 @@ def album(request, album):
     if not gallery.is_public:
         return render(request, tpl,
                       {'is_not_public': True})
-    photos = gallery.photos.filter(is_public=True).order_by('id')
+    photos = gallery.photos.filter(is_public=True)
     photosize = models.PhotoSize.objects.get(name='thumbnail')
     return render(request, tpl,
                   {'gallery': gallery,
