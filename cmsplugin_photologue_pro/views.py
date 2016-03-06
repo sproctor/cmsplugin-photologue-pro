@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import formats
 from photologue import models
+
 
 def overview(request):
     """Shows all available photo galleries."""
@@ -19,9 +19,10 @@ def overview(request):
                    'order': [1, 2, 3],
                    'photosize': photosize})
 
-def album(request, album):
+
+def gallery(request, album):
     """Shows all images of album."""
-    tpl = 'cmsplugin_photologue_pro/album.html'
+    tpl = 'cmsplugin_photologue_pro/gallery.html'
     try:
         gallery = models.Gallery.objects.get(pk=album)
     except models.Gallery.DoesNotExist:
@@ -35,6 +36,7 @@ def album(request, album):
                   {'gallery': gallery,
                    'photos': photos,
                    'photosize': photosize})
+
 
 def photo(request, album, photo):
     """Shows a detailed view of the photo."""

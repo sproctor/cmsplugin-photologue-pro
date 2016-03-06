@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 
 from cms.models import CMSPlugin
-from photologue import models as photologue_models
+from photologue.models import Gallery
 
 PHOTOS_PER_PAGE = (
     (0, _('All')),
@@ -20,14 +20,15 @@ PHOTOLOGUE_PRO_TEMPLATES_CHOICES = getattr(settings, 'PHOTOLOGUE_PRO_TEMPLATES',
                                            (
                                                (PHOTOLOGUE_PRO_TEMPLATES_DEFAULT_TEMPLATE, _('Default')),
                                            ))
+PHOTOLOGUE_PRO_SAMPLE_SIZE = getattr(settings, 'PHOTOLOGUE_PRO_SAMPLE_SIZE', 6)
 
 
-class Album(CMSPlugin):
+class Gallery(CMSPlugin):
     """Model for Album CMS plugin."""
 
-    album = models.ForeignKey(photologue_models.Gallery, verbose_name=_('Album'))
+    album = models.ForeignKey(Gallery, verbose_name=_('Gallery'))
     per_page = models.IntegerField(_('Photos per page'), choices=PHOTOS_PER_PAGE, default=100)
-    photos_to_show = models.IntegerField(_('Photos to show'), default=getattr(photologue_models, 'SAMPLE_SIZE', 6))
+    photos_to_show = models.IntegerField(_('Photos to show'), default=PHOTOLOGUE_PRO_SAMPLE_SIZE)
     template = models.CharField(_('Template'), max_length=250, choices=PHOTOLOGUE_PRO_TEMPLATES_CHOICES,
                                 default=PHOTOLOGUE_PRO_TEMPLATES_DEFAULT_TEMPLATE)
     show_photo_title = models.BooleanField(_('Show photo title'), default=True)

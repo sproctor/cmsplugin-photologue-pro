@@ -10,11 +10,11 @@ from cmsplugin_photologue_pro import models as pluginmodels
 from photologue import models
 
 
-class AlbumPlugin(CMSPluginBase):
+class GalleryPlugin(CMSPluginBase):
     """Album CMS plugin."""
 
-    name = _('Album')
-    model = pluginmodels.Album
+    name = _('Gallery')
+    model = pluginmodels.Gallery
     _render_template = 'cmsplugin_photologue_pro/album_plugin.html'
 
     def get_render_template(self, context, instance, placeholder):
@@ -48,4 +48,4 @@ class AlbumPlugin(CMSPluginBase):
         })
         return context
 
-plugin_pool.register_plugin(AlbumPlugin)
+plugin_pool.register_plugin(GalleryPlugin)
