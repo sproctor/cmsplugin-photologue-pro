@@ -15,7 +15,7 @@ PHOTOS_PER_PAGE = (
     (250, 250),
 )
 
-PHOTOLOGUE_PRO_TEMPLATES_DEFAULT_TEMPLATE = 'cmsplugin_photologue_pro/album_plugin.html'
+PHOTOLOGUE_PRO_TEMPLATES_DEFAULT_TEMPLATE = 'cmsplugin_photologue_pro/gallery_plugin.html'
 PHOTOLOGUE_PRO_TEMPLATES_CHOICES = getattr(settings, 'PHOTOLOGUE_PRO_TEMPLATES',
                                            (
                                                (PHOTOLOGUE_PRO_TEMPLATES_DEFAULT_TEMPLATE, _('Default')),
@@ -24,7 +24,7 @@ PHOTOLOGUE_PRO_SAMPLE_SIZE = getattr(settings, 'PHOTOLOGUE_PRO_SAMPLE_SIZE', 6)
 
 
 class Gallery(CMSPlugin):
-    """Model for Album CMS plugin."""
+    """Model for Gallery CMS plugin."""
 
     album = models.ForeignKey(Gallery, verbose_name=_('Gallery'))
     per_page = models.IntegerField(_('Photos per page'), choices=PHOTOS_PER_PAGE, default=100)

@@ -1,4 +1,4 @@
-{% extends "cmsplugin_photologue_pro/cmsplugin_photologue_pro_base.html" %}
+{% extends "cmsplugin_photologue_pro/base.html" %}
 {% load cmsplugin_photologue_pro_tags i18n %}
 
 {% block gallery %}
@@ -15,25 +15,25 @@
 		switch (evt.keyCode) {
 			{% if previous %}
 			case 37:
-				window.location = '{% url "photologue_photo" gallery.id previous.id %}';
+				window.location = '{% url "cmsphotologue:photo" gallery.id previous.id %}';
 				break;
 			{% endif %}
 			{% if next %}
 			case 39:
-				window.location = '{% url "photologue_photo" gallery.id next.id %}';
+				window.location = '{% url "cmsphotologue:photo" gallery.id next.id %}';
 				break;
 			{% endif %}
 		}
 	};
 </script>
 <div class="photologue_pro_navigation">
-	<a href="{% url 'photologue_album' gallery.id %}">&lt; {% trans "Back to album" %}</a>
-	{% if previous %}<a href="{% url 'photologue_photo' gallery.id previous.id %}">{% trans "Previous photo" %}</a>{% endif %}
-	{% if next %}<a href="{% url 'photologue_photo' gallery.id next.id %}">{% trans "Next photo" %}</a>{% endif %}
+	<a href="{% url 'cmsphotologue:album' gallery.id %}">&lt; {% trans "Back to album" %}</a>
+	{% if previous %}<a href="{% url 'cmsphotologue:photo' gallery.id previous.id %}">{% trans "Previous photo" %}</a>{% endif %}
+	{% if next %}<a href="{% url 'cmsphotologue:photo' gallery.id next.id %}">{% trans "Next photo" %}</a>{% endif %}
 </div>
 <div class="photologue_pro_photo_left clearfix">
 	<div class="photologue_pro_photo_details">
-		<img src="{{ photo.get_normal_url }}" alt="{{ photo.title }}" title="{{ photo.title }}" />
+		<img src="{{ photo.get_display_url }}" alt="{{ photo.title }}" title="{{ photo.title }}" />
 		<h2>{{ photo.title }}</h2>
 		{% if photo.caption %}
 		<div class="photologue_pro_photo_caption">{{ photo.caption }}</div>

@@ -11,11 +11,11 @@ from photologue import models
 
 
 class GalleryPlugin(CMSPluginBase):
-    """Album CMS plugin."""
+    """Gallery CMS plugin."""
 
     name = _('Gallery')
     model = pluginmodels.Gallery
-    _render_template = 'cmsplugin_photologue_pro/album_plugin.html'
+    _render_template = 'cmsplugin_photologue_pro/gallery_plugin.html'
 
     def get_render_template(self, context, instance, placeholder):
         return self._render_template if not instance.template else instance.template

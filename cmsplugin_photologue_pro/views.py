@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import render
 from django.utils import formats
 from photologue import models
-
+from django.http import HttpResponse
 
 def overview(request):
     """Shows all available photo galleries."""
@@ -51,11 +51,11 @@ def photo(request, album, photo):
         return render(request, tpl)
     if not gallery.is_public or not photo.is_public:
         return render(request, tpl, {'is_not_public': True})
-    photosize = models.PhotoSize.objects.get(name='normal')
+    photosize = models.PhotoSize.objects.get(name='display')
     photo.create_size(photosize)
     # FIXME: In the template, DATE_FORMAT is wrong. So I'm going this way
-    photo.datetaken = formats.date_format(photo.date_taken, 'DATE_FORMAT',
-                                          True)
+    if photo.date_taken:
+        photo.datetaken = formats.date_format(photo.date_taken, 'DATE_FORMAT', True)
     exif = None
     previous_photo = photo.get_previous_in_gallery(gallery)
     next_photo = photo.get_next_in_gallery(gallery)

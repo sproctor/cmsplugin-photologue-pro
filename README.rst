@@ -29,8 +29,10 @@ Configuration
 =============
 
 Add ``photologue`` and ``cmsplugin_photologue_pro`` to the list of
-``INSTALLED_APPS`` in your ``settings.py`` file. Don't forget to syncdb your
-database or migrate if you're using ``south``.
+``INSTALLED_APPS`` in your ``settings.py`` file.
+``python manage.py migrate cmsplugin_photologue_pro`` to update your database.
+Add ``url(r'^cmsphotologue/', include('cmsplugin_photologue_pro.urls', namespace='cmsphotologue'))``
+to your ``urls.py``.
 
 
 Author
