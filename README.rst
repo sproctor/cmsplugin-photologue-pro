@@ -37,7 +37,7 @@ to your ``urls.py``.
 Add custom gallery templates by adding something like the following to your settings.py::
 
   PHOTOLOGUE_PRO_TEMPLATES = (
-      ('cmsplugin_photologue_pro/gallery_plugin.html', _('Default')),
+      ('cmsplugin_photologue_pro/gallery_plugin.html', 'Default'),
       ('custom_gallery.html', 'Custom Template'),
   )
 
