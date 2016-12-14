@@ -34,6 +34,13 @@ Add ``photologue`` and ``cmsplugin_photologue_pro`` to the list of
 Add ``url(r'^cmsphotologue/', include('cmsplugin_photologue_pro.urls', namespace='cmsphotologue'))``
 to your ``urls.py``.
 
+Add custom gallery templates by adding something like the following to your settings.py:
+```
+PHOTOLOGUE_PRO_TEMPLATES = (
+    ('cmsplugin_photologue_pro/gallery_plugin.html', _('Default')),
+    ('custom_gallery.html', 'Custom Template'),
+)
+```
 
 Author
 ======
